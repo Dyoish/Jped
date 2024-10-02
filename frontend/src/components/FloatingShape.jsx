@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; //for animation, may bilog bilog na lumilipad sa background
 
+//function ng Floating shape
 const FloatingShape = ({ color, size, top, left, delay }) => {
   return (
     <motion.div
