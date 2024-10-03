@@ -7,7 +7,9 @@ import LoginPage from "./pages/LoginPage";
 function App() {
   return (
     <div className='min-h-screen bg-white flex items-center justify-center relative overflow-hidden'>
-      <FloatingShape
+      
+      {/*
+        <FloatingShape
         color="bg-green-500"
         size="w-64 h-64"
         top="-5%"
@@ -27,7 +29,7 @@ function App() {
         top="40%"
         left="-10%"
         delay={2}
-      />
+      /> */}
 
       <Routes>
         <Route path="/" element={<div>Home</div>} />
