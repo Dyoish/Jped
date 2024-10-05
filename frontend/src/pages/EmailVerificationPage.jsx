@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-// import { useAuthStore } from "../store/authStore";
+import { useAuthStore } from "../store/authStore";
 import toast from "react-hot-toast";
 
 const EmailVerificationPage = () => {
@@ -9,23 +9,23 @@ const EmailVerificationPage = () => {
 	const inputRefs = useRef([]);
 	const navigate = useNavigate();
 
-	// const { error, isLoading, verifyEmail } = useAuthStore();
+	const { error, isLoading, verifyEmail } = useAuthStore();
 
 	const handleChange = (index, value) => {
 		const newCode = [...code];
 
 		// Handle pasted content
-		if (value.length > 1) {
+		if (value.length > 1) { //if may pinaste sila na longer than 1 character,
 			const pastedCode = value.slice(0, 6).split("");
 			for (let i = 0; i < 6; i++) {
 				newCode[i] = pastedCode[i] || "";
 			}
 			setCode(newCode);
-
 			// Focus on the last non-empty input or the first empty one
 			const lastFilledIndex = newCode.findLastIndex((digit) => digit !== "");
 			const focusIndex = lastFilledIndex < 5 ? lastFilledIndex + 1 : 5;
 			inputRefs.current[focusIndex].focus();
+			
 		} else {
 			newCode[index] = value;
 			setCode(newCode);
@@ -38,7 +38,7 @@ const EmailVerificationPage = () => {
 	};
 
 	const handleKeyDown = (index, e) => {
-		if (e.key === "Backspace" && !code[index] && index > 0) {
+		if (e.key === "Backspace" && !code[index] && index > 0) { //pag nagbackspace, and if merong inputs sa mga box, mag fofocus siya doon sa previous input
 			inputRefs.current[index - 1].focus();
 		}
 	};
